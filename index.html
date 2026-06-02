@@ -531,25 +531,42 @@
 </footer>
 
 <script>
-  // staggered scroll reveals
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach((e,i)=>{
-      if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('in'), (e.target.dataset.d||0));
-        obs.unobserve(e.target);
-      }
+  // staggered scroll reveals — robust version
+  (function(){
+    var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+
+    function showAll(){ items.forEach(function(el){ el.classList.add('in'); }); }
+
+    // If IntersectionObserver isn't supported, just show everything.
+    if (!('IntersectionObserver' in window)) { showAll(); return; }
+
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var d = parseInt(e.target.dataset.d || 0, 10);
+          setTimeout(function(){ e.target.classList.add('in'); }, d);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -5% 0px" });  // trigger as soon as it edges into view
+
+    items.forEach(function(el, i){
+      el.dataset.d = (i % 3) * 90;     // gentle stagger
+      obs.observe(el);
+      // Anything already on-screen at load (e.g. the hero) shows immediately.
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
     });
-  },{threshold:.14, rootMargin:"0px 0px -8% 0px"});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
-    el.dataset.d = (i % 3) * 90;   // gentle stagger within each cluster
-    obs.observe(el);
-  });
+
+    // Safety net: if anything is still hidden a few seconds in, reveal it.
+    setTimeout(showAll, 3500);
+  })();
 
   // hide a placeholder only once its real image actually loads
-  document.querySelectorAll('.photo img').forEach(img=>{
-    const ph = img.parentElement.querySelector('.ph');
-    img.addEventListener('load', ()=>{ if(img.naturalWidth>1 && ph) ph.style.display='none'; });
-    img.addEventListener('error', ()=>{ img.style.display='none'; });
+  document.querySelectorAll('.photo img').forEach(function(img){
+    var ph = img.parentElement.querySelector('.ph');
+    img.addEventListener('load', function(){ if(img.naturalWidth>1 && ph) ph.style.display='none'; });
+    img.addEventListener('error', function(){ img.style.display='none'; });
     if(img.complete && img.naturalWidth>1 && ph) ph.style.display='none';
   });
 </script>
