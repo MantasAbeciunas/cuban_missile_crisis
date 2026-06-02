@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13 Days on the Brink — The Cuban Missile Crisis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0a07;
+    --panel:#14110b;
+    --panel-2:#1b1710;
+    --ink:#e9e1cf;
+    --ink-dim:#9b9079;
+    --sepia:#987654;
+    --amber:#d4a843;
+    --amber-soft:#b8923a;
+    --stamp:#9e3b2e;
+    --line:#2b2418;
+    --font-display:"Saira Condensed",sans-serif;
+    --font-body:"Spectral",Georgia,serif;
+    --font-type:"Special Elite",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-weight:400;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  /* film-grain + vignette atmosphere */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;opacity:.6;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
+    background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- shared type ---------- */
+  .kicker{
+    font-family:var(--font-type);font-size:13px;letter-spacing:.32em;
+    text-transform:uppercase;color:var(--amber);
+  }
+  .meta{font-family:var(--font-type);font-size:12px;letter-spacing:.18em;color:var(--ink-dim);text-transform:uppercase;}
+  h2{font-family:var(--font-display);font-weight:700;line-height:.98;letter-spacing:.01em;text-transform:uppercase;}
+  p{font-size:18px;color:#d9d0bd;}
+  p+p{margin-top:18px;}
+
+  /* ---------- HERO / case-file cover ---------- */
+  header.hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:80px 0 64px;
+    background:
+      linear-gradient(180deg, rgba(12,10,7,.55), rgba(12,10,7,.92)),
+      repeating-linear-gradient(0deg, transparent 0 38px, rgba(212,168,67,.025) 38px 39px);
+    border-bottom:1px solid var(--line);
+  }
+  .filebar{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    flex-wrap:wrap;gap:18px;margin-bottom:auto;
+  }
+  .filebar .meta{line-height:2;}
+  .stamp{
+    display:inline-block;font-family:var(--font-display);font-weight:800;
+    font-size:18px;letter-spacing:.18em;color:var(--stamp);
+    border:3px solid var(--stamp);padding:6px 14px;border-radius:3px;
+    transform:rotate(-7deg);opacity:.88;
+    box-shadow:inset 0 0 0 1px rgba(158,59,46,.4);
+  }
+  .hero-title{margin:40px 0 26px;}
+  .hero-title .small{
+    font-family:var(--font-display);font-weight:600;font-size:clamp(20px,3vw,30px);
+    letter-spacing:.36em;text-transform:uppercase;color:var(--sepia);display:block;margin-bottom:8px;
+  }
+  .hero-title h1{
+    font-family:var(--font-display);font-weight:800;text-transform:uppercase;
+    font-size:clamp(58px,12vw,150px);line-height:.86;letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  .hero-title h1 em{font-style:normal;color:var(--amber);}
+  .question{
+    max-width:760px;border-left:2px solid var(--amber);padding:4px 0 4px 24px;margin-top:34px;
+  }
+  .question .meta{display:block;margin-bottom:10px;}
+  .question p{font-size:21px;font-style:italic;color:#e9e1cf;line-height:1.6;}
+  .themetag{max-width:760px;margin-top:26px;padding:4px 0 4px 24px;border-left:2px solid var(--sepia);}
+  .themetag .meta{display:block;margin-bottom:8px;color:var(--sepia);}
+  .themetag p{font-size:16px;color:#cabfa9;line-height:1.6;}
+  .themetag strong{color:var(--amber);font-weight:500;}
+  .idblock{margin-top:34px;border:1px solid var(--line);background:var(--panel);padding:18px 22px;max-width:760px;}
+  .idblock .meta{display:block;margin-bottom:14px;color:var(--amber);}
+  .idgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;}
+  @media(max-width:560px){.idgrid{grid-template-columns:1fr;}}
+  .idgrid .k{display:block;font-family:var(--font-type);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);}
+  .idgrid .v{display:block;font-family:var(--font-body);font-size:16px;color:#e9e1cf;margin-top:2px;}
+  .scrollcue{margin-top:54px;font-family:var(--font-type);font-size:12px;letter-spacing:.25em;color:var(--ink-dim);text-transform:uppercase;}
+  .scrollcue span{display:inline-block;animation:bob 1.8s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:96px 0;border-bottom:1px solid var(--line);position:relative;}
+  .sec-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:14px;}
+  .sec-no{
+    font-family:var(--font-type);font-size:14px;color:var(--amber);letter-spacing:.2em;
+    border:1px solid var(--sepia);padding:4px 10px;border-radius:2px;
+  }
+  .sec-head h2{font-size:clamp(34px,5.5vw,62px);color:var(--ink);}
+  .sec-sub{font-family:var(--font-type);font-size:13px;letter-spacing:.2em;color:var(--ink-dim);text-transform:uppercase;margin-bottom:42px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;}
+  .grid.rev .col-text{order:2;}
+  .grid.rev .col-media{order:1;}
+  @media(max-width:760px){.grid,.grid.rev{grid-template-columns:1fr;gap:34px;}.grid.rev .col-text,.grid.rev .col-media{order:0;}}
+
+  /* ---------- dossier photo frame w/ instructional placeholder ---------- */
+  .photo{
+    position:relative;background:var(--panel-2);
+    border:1px solid var(--line);padding:14px 14px 0;
+    box-shadow:0 22px 50px rgba(0,0,0,.55);transform:rotate(-1.1deg);
+  }
+  .photo.r{transform:rotate(1.2deg);}
+  .photo .frame{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:
+      repeating-linear-gradient(45deg,#1d1810 0 12px,#191409 12px 24px);}
+  .photo .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:sepia(.35) contrast(1.04) brightness(.92);z-index:2;}
+  .ph{
+    position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:22px;gap:8px;
+    background:radial-gradient(ellipse at 40% 30%, #2a2113, #14100a);
+  }
+  .ph .lab{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.28em;color:var(--sepia);text-transform:uppercase;}
+  .ph .fn{font-family:var(--font-type);font-size:13px;color:var(--amber);word-break:break-all;}
+  .ph .hint{font-family:var(--font-type);font-size:11px;color:var(--ink-dim);letter-spacing:.05em;max-width:260px;line-height:1.5;}
+  .ph .corner{position:absolute;width:14px;height:14px;border-color:var(--sepia);}
+  .ph .corner.tl{top:12px;left:12px;border-top:2px solid;border-left:2px solid;}
+  .ph .corner.tr{top:12px;right:12px;border-top:2px solid;border-right:2px solid;}
+  .ph .corner.bl{bottom:12px;left:12px;border-bottom:2px solid;border-left:2px solid;}
+  .ph .corner.br{bottom:12px;right:12px;border-bottom:2px solid;border-right:2px solid;}
+  .cap{font-family:var(--font-type);font-size:12px;color:var(--ink-dim);
+    padding:12px 4px 14px;line-height:1.55;letter-spacing:.02em;}
+  .cap b{color:var(--sepia);font-weight:400;}
+  .credit{display:block;margin-top:4px;font-style:italic;color:var(--ink-dim);font-size:11px;}
+
+  /* ---------- document excerpt / pull-quote ---------- */
+  .excerpt{
+    background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--amber);
+    padding:26px 28px;margin:28px 0;position:relative;
+  }
+  .excerpt::before{content:"EXCERPT";position:absolute;top:-9px;left:22px;background:var(--bg);
+    padding:0 8px;font-family:var(--font-type);font-size:11px;letter-spacing:.22em;color:var(--amber);}
+  .excerpt q{font-family:var(--font-body);font-style:italic;font-size:19px;color:#ece4d2;line-height:1.6;quotes:"\201C" "\201D";}
+  .excerpt .src{display:block;margin-top:12px;font-family:var(--font-type);font-size:12px;letter-spacing:.12em;color:var(--ink-dim);text-transform:uppercase;}
+  .redact{background:var(--ink);color:transparent;padding:0 .25em;border-radius:1px;user-select:none;}
+
+  /* ---------- timeline strip (sec 2) ---------- */
+  .tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:38px 0 4px;border-top:1px solid var(--line);}
+  @media(max-width:680px){.tl{grid-template-columns:1fr 1fr;}}
+  .tl div{padding:18px 16px 22px;border-right:1px solid var(--line);position:relative;}
+  .tl div:last-child{border-right:none;}
+  .tl div::before{content:"";position:absolute;top:-5px;left:16px;width:9px;height:9px;background:var(--amber);border-radius:50%;}
+  .tl .d{font-family:var(--font-type);font-size:12px;color:var(--amber);letter-spacing:.12em;}
+  .tl .t{font-family:var(--font-body);font-size:15px;color:#d9d0bd;margin-top:6px;line-height:1.4;}
+
+  /* ---------- two-voices layout cue ---------- */
+  .voice-tag{font-family:var(--font-display);font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:14px;margin-bottom:6px;}
+  .voice-us{color:var(--amber);}
+  .voice-su{color:var(--stamp);}
+
+  /* ---------- reform highlight (sec 5) ---------- */
+  .payoff{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--sepia);
+    padding:30px 30px 8px;margin-top:30px;border-radius:3px;}
+  .payoff .meta{color:var(--amber);}
+
+  /* ---------- bibliography ---------- */
+  .biblio{padding:90px 0 110px;}
+  .biblio ol{list-style:none;counter-reset:b;margin-top:28px;}
+  .biblio li{counter-increment:b;padding:16px 0 16px 54px;border-bottom:1px solid var(--line);position:relative;font-size:15px;color:#cabfa9;}
+  .biblio li::before{content:counter(b,decimal-leading-zero);position:absolute;left:0;top:16px;
+    font-family:var(--font-type);font-size:13px;color:var(--amber);letter-spacing:.1em;}
+  .biblio li b{color:var(--ink);font-weight:500;}
+  .biblio .grp{margin-top:44px;}
+  .biblio .grp h3{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:21px;color:var(--amber);border-bottom:1px solid var(--sepia);padding-bottom:10px;margin-bottom:2px;}
+  .biblio .grp .meta{display:block;margin:8px 0 2px;}
+  .biblio ol{margin-top:6px;}
+  .biblio li{padding-left:58px;}
+  .biblio ol.primary li::before{content:"P" counter(b,decimal-leading-zero);}
+  .biblio ol.secondary li::before{content:"S" counter(b,decimal-leading-zero);}
+  .biblio li i{color:var(--ink-dim);font-style:italic;}
+  footer{padding:40px 0 70px;text-align:center;}
+  footer .meta{letter-spacing:.22em;}
+
+  /* ---------- reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}.scrollcue span{animation:none;}}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="filebar">
+      <div class="meta">
+        Case File No. 1962-10<br>
+        Subject: U.S.–U.S.S.R. Relations<br>
+        Classification: <span style="color:var(--amber)">Declassified for Study</span>
+      </div>
+      <div class="stamp">Top Secret</div>
+    </div>
+
+    <div class="hero-title">
+      <span class="small">The Cuban Missile Crisis</span>
+      <h1>13 Days<br>on the <em>Brink</em></h1>
+    </div>
+
+    <div class="question">
+      <span class="meta">Thesis</span>
+      <p>The Cuban Missile Crisis revealed how dangerous miscommunication between nuclear superpowers could be, and it directly led to major reforms in communication and diplomacy between the United States and the Soviet Union, including the creation of the Washington–Moscow hotline and long-term changes in crisis management during the Cold War.</p>
+    </div>
+
+    <div class="themetag">
+      <span class="meta">Theme · Revolution, Reaction, Reform</span>
+      <p>A <strong>revolution</strong> in Cuba set the stage; a U.S. <strong>reaction</strong> brought the world to the brink; and the <strong>reform</strong> that followed rebuilt superpower diplomacy.</p>
+    </div>
+
+    <div class="idblock">
+      <span class="meta">Entry Information</span>
+      <div class="idgrid">
+        <div><span class="k">Name</span><span class="v">Mantas Abeciunas</span></div>
+        <div><span class="k">Title</span><span class="v">13 Days on the Brink: The Cuban Missile Crisis</span></div>
+        <div><span class="k">Division / Category</span><span class="v">Junior Division — Individual Website</span></div>
+        <div><span class="k">Student-Composed Words</span><span class="v" id="wordcount">811</span></div>
+      </div>
+    </div>
+
+    <div class="scrollcue"><span>↓ &nbsp; Open the file</span></div>
+  </div>
+</header>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="s1">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-no">01</span>
+      <h2>Two Forces Collide</h2>
+    </div>
+    <div class="sec-sub reveal">Context · The Revolution and the Cold War</div>
+
+    <div class="grid">
+      <div class="col-text reveal">
+        <p>In 1959, Fidel Castro overthrew Batista and built a communist government just 90 miles from America, aligned with the Soviet Union. This was during the Cold War, a period of extreme tension between the two superpowers.</p>
+        <p>In 1962, the Soviets secretly installed nuclear missiles in Cuba. American U-2 spy planes detected the missile sites under construction that October, triggering a tense thirteen-day confrontation between Washington and Moscow.</p>
+        <p>The crisis grew directly out of Cold War rivalry, the Cuban Revolution, and the failed Bay of Pigs invasion. These events pushed the Soviets to place missiles within striking distance of the United States.</p>
+      </div>
+      <div class="col-media reveal">
+        <figure class="photo r">
+          <div class="frame">
+            <span class="ph">
+              <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+              <span class="lab">Photo 01</span>
+              <span class="fn">images/u2-recon.jpg</span>
+              <span class="hint">U-2 reconnaissance photo of missile sites. Public domain — National Archives / JFK Library.</span>
+            </span>
+            <img src="images/u2-recon.jpg" alt="U-2 reconnaissance photograph of missile sites in Cuba, October 1962" loading="lazy">
+          </div>
+          <figcaption class="cap"><b>Fig. 01 —</b> U-2 aerial reconnaissance reveals Soviet missile construction in Cuba, October 1962. <span class="credit">Credit: U.S. Air Force / National Archives (public domain).</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="s2">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-no">02</span>
+      <h2>The Thirteen Days</h2>
+    </div>
+    <div class="sec-sub reveal">A Crisis of Communication</div>
+
+    <div class="grid rev">
+      <div class="col-text reveal">
+        <p>Kennedy learned of the missiles from U-2 photographs. The famed "thirteen days" ran from October 16, when he first saw the evidence, to October 28, when Khrushchev publicly agreed to remove the weapons. The danger did not fully pass until the blockade was lifted on November 20. On October 22, 1962, Kennedy announced a naval "quarantine" of Cuba, calling it that to avoid the legal and diplomatic implications of an act of war if he were to call it a "blockade".</p>
+        <p>For thirteen days the world balanced on slow, indirect messages passed between Kennedy and Khrushchev. The danger of this crisis was not just the nuclear weapons each side had placed near their respective enemy's borders, but rather the lack of clear and reliable communication between the two world leaders, and their troops.</p>
+        <p>Because no fast, direct line to Moscow existed, Kennedy was forced to talk through a sprawling web of intermediaries. He debated options with his Executive Committee (ExComm), consulted former president Eisenhower, telephoned British Prime Minister Macmillan, and relied on the United Nations' acting secretary-general as a go-between.</p>
+        <div class="excerpt">
+          <q>The letter was the first in a series of direct and indirect communications between the White House and the Kremlin throughout the remainder of the crisis.</q>
+          <span class="src">— U.S. Dept. of State, Office of the Historian</span>
+        </div>
+        <div class="excerpt">
+          <q>…the forces under my command are ordered…to interdict…the delivery of offensive weapons…to Cuba.</q>
+          <span class="src">— Proclamation 3504, J.F. Kennedy, Oct. 23, 1962</span>
+        </div>
+        <div class="excerpt">
+          <q>Kennedy and Khrushchev, and their advisers, struggled throughout the crisis to clearly understand each others' true intentions, while the world hung on the brink of possible nuclear war.</q>
+          <span class="src">— U.S. Dept. of State, Office of the Historian</span>
+        </div>
+      </div>
+      <div class="col-media reveal">
+        <figure class="photo">
+          <div class="frame">
+            <span class="ph">
+              <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+              <span class="lab">Photo 02</span>
+              <span class="fn">images/excomm-meeting.jpg</span>
+              <span class="hint">Kennedy's ExComm crisis meeting. Public domain — JFK Presidential Library.</span>
+            </span>
+            <img src="images/excomm-meeting.jpg" alt="President Kennedy meets with his Executive Committee during the crisis" loading="lazy">
+          </div>
+          <figcaption class="cap"><b>Fig. 02 —</b> President Kennedy and the Executive Committee (ExComm) weigh their options. <span class="credit">Credit: Cecil Stoughton, White House Photographs, JFK Library (public domain).</span></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="tl reveal">
+      <div><div class="d">OCT 14</div><div class="t">U-2 photographs confirm missile sites under construction.</div></div>
+      <div><div class="d">OCT 22</div><div class="t">Kennedy announces a naval "quarantine" of Cuba on national television.</div></div>
+      <div><div class="d">OCT 26</div><div class="t">Khrushchev's letter opens a fragile back-channel toward de-escalation.</div></div>
+      <div><div class="d">OCT 28</div><div class="t">The Soviets agree to withdraw the missiles; the crisis breaks.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="s3">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-no">03</span>
+      <h2>The American Voice</h2>
+    </div>
+    <div class="sec-sub reveal">Primary Source · JFK's Address, October 22, 1962</div>
+
+    <div class="grid">
+      <div class="col-text reveal">
+        <div class="voice-tag voice-us">United States — President John F. Kennedy</div>
+        <p>In a televised address, Kennedy informed the American people of the missiles, condemned the Soviet move as deceptive, and spoke directly to Khrushchev. In his address, he demanded the weapons be withdrawn.</p>
+        <div class="excerpt">
+          <q>It is difficult to settle or even discuss these problems in an atmosphere of intimidation.</q>
+          <span class="src">— J.F. Kennedy, Oct. 22, 1962</span>
+        </div>
+        <div class="excerpt">
+          <q>We are prepared to discuss new proposals for the removal of tensions on both sides…</q>
+          <span class="src">— J.F. Kennedy, Oct. 22, 1962</span>
+        </div>
+        <div class="excerpt">
+          <q>I call upon Chairman Khrushchev to halt and eliminate this clandestine, reckless and provocative threat to world peace.</q>
+          <span class="src">— J.F. Kennedy, Oct. 22, 1962</span>
+        </div>
+      </div>
+      <div class="col-media reveal">
+        <figure class="photo r">
+          <div class="frame">
+            <span class="ph">
+              <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+              <span class="lab">Photo 03</span>
+              <span class="fn">images/jfk-address.jpg</span>
+              <span class="hint">JFK's Oct. 22 televised address. Public domain — JFK Presidential Library.</span>
+            </span>
+            <img src="images/jfk-address.jpg" alt="President Kennedy delivers his televised address on October 22, 1962" loading="lazy">
+          </div>
+          <figcaption class="cap"><b>Fig. 03 —</b> Kennedy addresses the nation, revealing the missiles and the quarantine. <span class="credit">Credit: Abbie Rowe, White House Photographs, JFK Library (public domain).</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="s4">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-no">04</span>
+      <h2>The Soviet Voice</h2>
+    </div>
+    <div class="sec-sub reveal">Primary Source · Khrushchev's Letter, October 26, 1962</div>
+
+    <div class="grid rev">
+      <div class="col-text reveal">
+        <div class="voice-tag voice-su">Soviet Union — Premier Nikita Khrushchev</div>
+        <p>Khrushchev framed the missiles as a defensive measure, protecting Cuba after the Bay of Pigs invasion. His letter pressed urgently toward avoiding nuclear war and proposed a path to de-escalation.</p>
+        <div class="excerpt">
+          <q>If, however, you have not lost your self-control… then it is evident that nothing else is left to us but to accept this challenge of yours.</q>
+          <span class="src">— N. Khrushchev, Oct. 26, 1962</span>
+        </div>
+        <div class="excerpt">
+          <q>We have proceeded and are proceeding from the fact that the peaceful co-existence of the two different social-political systems… is necessary.</q>
+          <span class="src">— N. Khrushchev, Oct. 26, 1962</span>
+        </div>
+        <div class="excerpt">
+          <q>Let us take measures to untie that knot.</q>
+          <span class="src">— N. Khrushchev, Oct. 26, 1962</span>
+        </div>
+        <p>A day later, a second, tougher letter arrived. This one demanded that the U.S. withdraw its own missiles from Turkey. Each side believed that their own weapons were a defensive measure and acceptable, but treated those of their enemy as aggressive acts of war.</p>
+        <div class="excerpt">
+          <q>You are disturbed over Cuba…But Turkey adjoins us.</q>
+          <span class="src">— N. Khrushchev, second letter, Oct. 27, 1962</span>
+        </div>
+        <p>A private meeting between the Soviet ambassador and President Kennedy broke the stalemate, as it signaled that the U.S. would, in time, remove its Jupiter missiles from Turkey. The formal letters sent were severely delayed, which made accurately communicating impossible. The real resolution was through direct, informal contact between representatives of each side. The crisis showed how slow communication increased tensions, while direct communication between the two countries was what deescalated the conflict. This lesson is what led to later reforms, whose effects are still seen today.</p>
+      </div>
+      <div class="col-media reveal">
+        <figure class="photo">
+          <div class="frame">
+            <span class="ph">
+              <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+              <span class="lab">Photo 04</span>
+              <span class="fn">images/khrushchev.jpg</span>
+              <span class="hint">Premier Nikita Khrushchev, c. 1962. Use a Wikimedia Commons image tagged public domain (avoid wire-service photos).</span>
+            </span>
+            <img src="images/khrushchev.jpg" alt="Soviet Premier Nikita Khrushchev, circa 1962" loading="lazy">
+          </div>
+          <figcaption class="cap"><b>Fig. 04 —</b> Soviet Premier Nikita Khrushchev, the crisis seen from Moscow. <span class="credit">Credit: Wikimedia Commons (verify the file's license before publishing).</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="s5">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-no">05</span>
+      <h2>The Reform</h2>
+    </div>
+    <div class="sec-sub reveal">Primary Source · The Washington–Moscow Hot Line</div>
+
+    <div class="grid">
+      <div class="col-text reveal">
+        <p>The crisis exposed a terrifying flaw: in an age of nuclear weapons, the superpowers had no fast, direct way to talk. The answer was the "Hot Line". It was a direct communications link letting leaders reach each other in minutes, not days.</p>
+        <p>During the crisis, a single message from Khrushchev had to be encoded, transmitted, and translated before it could even be read. This process could take many hours, delaying when Kennedy would be able to read the message. In such a confrontation, where fast communication is vital, that lag could have proved catastrophic for relations between global superpowers. The Hot Line was designed to close exactly that gap.</p>
+        <div class="payoff">
+          <span class="meta">The Transformation</span>
+          <div class="excerpt" style="margin-top:14px;">
+            <q>The Cuban missile crisis of October 1962 compellingly underscored the importance of prompt, direct communication between heads of state.</q>
+            <span class="src">— Hot Line Memorandum of Understanding, U.S. Dept. of State</span>
+          </div>
+          <div class="excerpt">
+            <q>Included was establishment of communications links between major capitals to ensure rapid and reliable communications in times of crisis.</q>
+            <span class="src">— Hot Line Memorandum of Understanding, U.S. Dept. of State</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-media reveal">
+        <figure class="photo r">
+          <div class="frame">
+            <span class="ph">
+              <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+              <span class="lab">Photo 05</span>
+              <span class="fn">images/hotline-teletype.jpg</span>
+              <span class="hint">The Hot Line teletype equipment. Trace the licensed image from the Wikipedia "Moscow–Washington hotline" article to its Commons source.</span>
+            </span>
+            <img src="images/hotline-teletype.jpg" alt="The Washington–Moscow hot line teletype equipment" loading="lazy">
+          </div>
+          <figcaption class="cap"><b>Fig. 05 —</b> The Hot Line teletype — diplomacy rebuilt as a direct, permanent channel. <span class="credit">Credit: National Cryptologic Museum, via Wikimedia Commons (check CC license).</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+<section id="s6">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-no">06</span>
+      <h2>The Legacy</h2>
+    </div>
+    <div class="sec-sub reveal">Decades of Diplomacy</div>
+
+    <div class="grid rev">
+      <div class="col-text reveal">
+        <p>The effects of the changes made after the crisis are still seen to this day. The Hot Line was upgraded from undersea cables to satellites for greater speed and reliability. It proved its worth years later, during the 1967 Arab–Israeli War.</p>
+        <p>What began as a near-catastrophe became a lasting framework for managing the most dangerous moments of the Cold War.</p>
+        <div class="excerpt">
+          <q>Nixon today announced formal approval of two agreements…aimed at modernizing the Washington-Moscow hotline and reducing the risk of accidental nuclear war.</q>
+          <span class="src">— Spokane Daily Chronicle, 1971</span>
+        </div>
+        <div class="excerpt">
+          <q>The hotline has been used only once, during the 1967 Arab-Israeli war.</q>
+          <span class="src">— Spokane Daily Chronicle, 1971</span>
+        </div>
+        <p>The deeper significance of this crisis lies in the reforms it brought. The missiles were removed within weeks, but the change in how the superpowers communicated outlasted the crisis by decades. A reaction born of fear produced a permanent reform. Neither side technically won, but both ended up benefiting from a reliable system for talking before the shooting could start.</p>
+      </div>
+      <div class="col-media reveal">
+        <figure class="photo">
+          <div class="frame">
+            <span class="ph">
+              <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+              <span class="lab">Photo 06</span>
+              <span class="fn">images/hotline-1971.jpg</span>
+              <span class="hint">Optional: a 1971 newspaper clipping or satellite-era hotline image. Public domain sources preferred.</span>
+            </span>
+            <img src="images/hotline-1971.jpg" alt="Newspaper coverage of hotline modernization, 1971" loading="lazy">
+          </div>
+          <figcaption class="cap"><b>Fig. 06 —</b> The hotline modernized for the satellite age — a permanent fixture of superpower diplomacy. <span class="credit">Credit: add source when image is selected.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIBLIOGRAPHY ============ -->
+<section class="biblio" id="sources">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-no">REF</span>
+      <h2>Sources</h2>
+    </div>
+    <div class="sec-sub reveal">Research Dossier · Cited Documents</div>
+
+    <div class="grp reveal">
+      <h3>Primary Sources</h3>
+      <span class="meta">Documents created during the crisis era</span>
+      <ol class="primary">
+        <li>Kennedy, John F. <b>"Address During the Cuban Missile Crisis."</b> 22 Oct. 1962. John F. Kennedy Presidential Library &amp; Museum, jfklibrary.org.</li>
+        <li>Khrushchev, Nikita. <b>Letter to President John F. Kennedy.</b> 26 Oct. 1962. John F. Kennedy Presidential Library &amp; Museum (Dept. of State telegram).</li>
+        <li>Khrushchev, Nikita. <b>Second Letter to President Kennedy</b> — demanding removal of U.S. Jupiter missiles from Turkey. 27 Oct. 1962. John F. Kennedy Presidential Library &amp; Museum.</li>
+        <li>Kennedy, John F. <b>Proclamation 3504: "Interdiction of the Delivery of Offensive Weapons to Cuba."</b> 23 Oct. 1962. The American Presidency Project.</li>
+        <li>United States, Dept. of State. <b>Memorandum of Understanding Regarding the Establishment of a Direct Communications Link</b> (the "Hot Line"). 20 June 1963.</li>
+        <li><b>"Hotline Modernization Approved."</b> <i>Spokane Daily Chronicle,</i> 1971, via Google Books. Coverage of Washington–Moscow hotline upgrades.</li>
+      </ol>
+    </div>
+
+    <div class="grp reveal">
+      <h3>Secondary Sources</h3>
+      <span class="meta">Later analysis and historical interpretation</span>
+      <ol class="secondary">
+        <li><b>"Cuban Missile Crisis — History, Facts &amp; Significance."</b> <i>Encyclopædia Britannica,</i> britannica.com.</li>
+        <li>United States, Dept. of State, Office of the Historian. <b>"The Cuban Missile Crisis, October 1962."</b> history.state.gov.</li>
+        <li><b>"The Cuban Missile Crisis."</b> John F. Kennedy Presidential Library &amp; Museum, jfklibrary.org.</li>
+        <li><b>"Cuban Missile Crisis: Causes, Timeline &amp; Significance."</b> <i>History.com,</i> A&amp;E Television Networks.</li>
+        <li>The National Security Archive. <b>"The Cuban Missile Crisis @ 60."</b> George Washington University, nsarchive.gwu.edu.</li>
+        <li><b>"JFK and the Cuban Missile Crisis."</b> The Miller Center, University of Virginia, millercenter.org.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="meta">End of File · Cuban Missile Crisis · 1962</div>
+  </div>
+</footer>
+
+<script>
+  // staggered scroll reveals
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('in'), (e.target.dataset.d||0));
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:.14, rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.dataset.d = (i % 3) * 90;   // gentle stagger within each cluster
+    obs.observe(el);
+  });
+
+  // hide a placeholder only once its real image actually loads
+  document.querySelectorAll('.photo img').forEach(img=>{
+    const ph = img.parentElement.querySelector('.ph');
+    img.addEventListener('load', ()=>{ if(img.naturalWidth>1 && ph) ph.style.display='none'; });
+    img.addEventListener('error', ()=>{ img.style.display='none'; });
+    if(img.complete && img.naturalWidth>1 && ph) ph.style.display='none';
+  });
+</script>
+</body>
+</html>
